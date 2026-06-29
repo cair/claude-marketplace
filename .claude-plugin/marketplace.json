@@ -1,0 +1,24 @@
+{
+  "name": "cair",
+  "owner": {
+    "name": "CAIR"
+  },
+  "description": "Community marketplace for Claude Code skills and agentic workflows, curated by CAIR (Center for Artificial Intelligence Research).",
+  "version": "1.0.0",
+  "plugins": [
+    {
+      "name": "caveman",
+      "source": "./caveman",
+      "description": "Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler, articles, and pleasantries while keeping full technical accuracy.",
+      "version": "1.0.0",
+      "author": { "name": "CAIR" }
+    },
+    {
+      "name": "deep-research",
+      "source": "./deep-research",
+      "description": "Deep research harness — fan-out web searches, fetch sources, adversarially verify claims, synthesize a cited report.",
+      "version": "1.0.0",
+      "author": { "name": "CAIR" }
+    }
+  ]
+}
