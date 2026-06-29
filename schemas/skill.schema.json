@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/cair/claude-marketplace/schemas/skill.schema.json",
+  "title": "Claude Code Skill",
+  "type": "object",
+  "required": ["name", "description", "version", "author", "trigger", "category"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Short kebab-case identifier used as the skill name in Claude Code",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "description": {
+      "type": "string",
+      "description": "One-line description shown to Claude when deciding whether to invoke the skill"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "author": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["coding", "research", "writing", "data", "devops", "agent", "other"]
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 10
+    },
+    "trigger": {
+      "type": "string",
+      "description": "Natural-language description of when Claude Code should invoke this skill"
+    },
+    "models": {
+      "type": "array",
+      "description": "Claude models this skill is known to work well with",
+      "items": {
+        "type": "string",
+        "enum": ["claude-haiku-4-5", "claude-sonnet-4-6", "claude-opus-4-8", "any"]
+      }
+    },
+    "requires_mcp": {
+      "type": "array",
+      "description": "MCP servers this skill depends on",
+      "items": { "type": "string" }
+    },
+    "homepage": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

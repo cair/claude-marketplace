@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/cair/claude-marketplace/schemas/workflow.schema.json",
+  "title": "Claude Code Workflow",
+  "type": "object",
+  "required": ["name", "description", "version", "author", "category"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "description": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "author": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["research", "code-review", "testing", "deployment", "data-analysis", "writing", "other"]
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 10
+    },
+    "skills_used": {
+      "type": "array",
+      "description": "Names of marketplace skills this workflow composes",
+      "items": { "type": "string" }
+    },
+    "requires_mcp": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "homepage": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}
