@@ -18,27 +18,46 @@ npm run lint         # ESLint
 
 ## Architecture
 
-**Content-driven static site.** Skills and workflows live as markdown files in `content/`; the Next.js app reads them at build time and exports a static site (`output: "export"`) deployed to GitHub Pages via `.github/workflows/ci.yml`.
+This repo has **two parallel structures** for every skill. They serve different consumers and both must be kept in sync — a skill added to only one of them is incomplete.
 
-### Content layer
+1. **Website content** (`content/`) — markdown read by the Next.js site at build time, for browsing/documentation only. Not read by Claude Code itself.
+2. **Installable plugin** (root-level `<name>/` dirs + `.claude-plugin/marketplace.json`) — the actual Claude Code plugin format. This is what `claude plugin marketplace add` / `extraKnownMarketplaces` reads. A skill missing from here is invisible to Claude Code even if it's fully documented on the website.
 
-- `content/skills/<slug>/skill.md` — each file's YAML frontmatter is validated against `schemas/skill.schema.json`
+### Content layer (website only)
+
+- `content/skills/<slug>/skill.md` — frontmatter validated against `schemas/skill.schema.json`
 - `content/workflows/<slug>/workflow.md` — validated against `schemas/workflow.schema.json`
 - `scripts/validate-content.js` — runs `npm run validate`; also runs in CI before build
 
+### Plugin layer (installable)
+
+- `.claude-plugin/marketplace.json` — root registry; every installable plugin must have an entry here with a `source` pointing at its directory
+- `<name>/.claude-plugin/plugin.json` — plugin manifest (`name`, `description`, `version`, `author`)
+- `<name>/skills/<name>/SKILL.md` — the actual skill definition Claude Code loads. Frontmatter is just `name` + `description` (the `description` doubles as the trigger condition); no `category`/`tags`/`models` fields here — those are website-only concepts
+
 ### Web layer (`src/`)
 
-- `src/lib/content.ts` — reads and parses all markdown files (called at build time only, uses `fs`)
+- `src/lib/content.ts` — reads and parses all markdown files under `content/` (called at build time only, uses `fs`)
 - `src/lib/types.ts` — shared TypeScript types for `Skill` and `Workflow`
 - `src/app/` — Next.js App Router; pages generate static params from content at build time
 
-### Adding a skill or workflow
+### Adding a new skill
 
-1. Create `content/skills/<name>/skill.md` (or `content/workflows/<name>/workflow.md`)
-2. Add required YAML frontmatter matching the schema
-3. Run `npm run validate` to check
-4. Open a pull request — CI validates and builds before merge
+Do both halves — skipping either leaves the skill either undocumented or uninstallable:
+
+1. **Website entry**: create `content/skills/<name>/skill.md` with full frontmatter (see `schemas/skill.schema.json` for required fields: `name`, `description`, `version`, `author`, `category`, `trigger`, etc.)
+2. **Plugin entry**:
+   - Create `<name>/.claude-plugin/plugin.json` (`name`, `description`, `version`, `author`)
+   - Create `<name>/skills/<name>/SKILL.md` with the real skill instructions (frontmatter: `name` + `description` only)
+   - Add an entry for `<name>` to the `plugins` array in `.claude-plugin/marketplace.json`
+3. Run `npm run validate` to check the website content
+4. Sanity-check `.claude-plugin/marketplace.json` is valid JSON (e.g. `node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/marketplace.json'))"`)
+5. Open a pull request — CI validates and builds before merge
+
+### Adding a new workflow
+
+Workflows currently only exist in the website content layer — create `content/workflows/<name>/workflow.md` matching `schemas/workflow.schema.json` and run `npm run validate`.
 
 ### Schemas
 
-`schemas/` defines the required frontmatter fields. The `name` field must be kebab-case and match the directory name. The `trigger` field is the natural-language description shown to Claude Code when deciding whether to invoke the skill.
+`schemas/` defines the required frontmatter fields for the website content layer. The `name` field must be kebab-case and match the directory name. The `trigger` field (website layer) / `description` field (plugin layer) is the natural-language description used to decide when to invoke the skill.
