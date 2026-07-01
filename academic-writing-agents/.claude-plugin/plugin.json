@@ -1,0 +1,6 @@
+{
+  "name": "academic-writing-agents",
+  "description": "Multi-agent orchestrator for academic writing: 12 specialist agents and 30 writing principles for review, research, drafting, polishing, bibliography auditing, and literature surveys.",
+  "version": "2.1.0",
+  "author": { "name": "Haiwen Huang (original), hardened by CAIR" }
+}

@@ -33,6 +33,41 @@
       "description": "Interactive guided research assistant — iteratively refines a research question, builds a source list, and co-pilots the user through structured synthesis.",
       "version": "1.0.0",
       "author": { "name": "CAIR" }
+    },
+    {
+      "name": "academic-paper-reviewer",
+      "source": "./academic-paper-reviewer",
+      "description": "Multi-perspective academic paper review with 7 dynamic reviewer agents (EIC + 3 peer reviewers + Devil's Advocate + field analyst + editorial synthesizer), using calibrated 0-100 quality rubrics across 7 review dimensions.",
+      "version": "1.10.0",
+      "author": { "name": "Imbad0202 (original), hardened by CAIR" }
+    },
+    {
+      "name": "academic-writing-agents",
+      "source": "./academic-writing-agents",
+      "description": "Multi-agent orchestrator for academic writing: 12 specialist agents and 30 writing principles for review, research, drafting, polishing, bibliography auditing, and literature surveys.",
+      "version": "2.1.0",
+      "author": { "name": "Haiwen Huang (original), hardened by CAIR" }
+    },
+    {
+      "name": "council-review",
+      "source": "./council-review",
+      "description": "Run any question, plan, PR, or code through a Diverse Multi-Agent Debate (DMAD) council of 5 AI advisors with distinct reasoning methods. Advisors collaborate, peer-review each other anonymously, and a chairman synthesizes a verdict.",
+      "version": "2.1.0",
+      "author": { "name": "Neal Meyer (original), hardened by CAIR" }
+    },
+    {
+      "name": "agent-review-panel",
+      "source": "./agent-review-panel",
+      "description": "Multi-agent adversarial review panel — 4-6 AI reviewers debate your code/plans, then a judge delivers a structured verdict with epistemic labels. Bundles plan-review-integrator for applying review findings back into implementation plans.",
+      "version": "3.6.0",
+      "author": { "name": "wan-huiyan (original), hardened by CAIR" }
+    },
+    {
+      "name": "experiment-agent",
+      "source": "./experiment-agent",
+      "description": "Experiment executor and monitor for academic research. 2-agent system covering code experiments (ML training, statistical analysis, ETL, simulation) and human studies (surveys, field studies, interviews).",
+      "version": "1.1.0",
+      "author": { "name": "Cheng-I Wu (original), hardened by CAIR" }
     }
   ]
 }

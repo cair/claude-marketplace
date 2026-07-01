@@ -1,0 +1,6 @@
+{
+  "name": "council-review",
+  "description": "Run any question, plan, PR, or code through a Diverse Multi-Agent Debate (DMAD) council of 5 AI advisors with distinct reasoning methods. Advisors collaborate, peer-review each other anonymously, and a chairman synthesizes a verdict.",
+  "version": "2.1.0",
+  "author": { "name": "Neal Meyer (original), hardened by CAIR" }
+}

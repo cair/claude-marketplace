@@ -1,0 +1,6 @@
+{
+  "name": "academic-paper-reviewer",
+  "description": "Multi-perspective academic paper review with 7 dynamic reviewer agents (EIC + 3 peer reviewers + Devil's Advocate + field analyst + editorial synthesizer), using calibrated 0-100 quality rubrics across 7 review dimensions.",
+  "version": "1.10.0",
+  "author": { "name": "Imbad0202 (original), hardened by CAIR" }
+}
