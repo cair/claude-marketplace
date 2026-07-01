@@ -1,0 +1,6 @@
+{
+  "name": "research-pilot",
+  "description": "Interactive guided research assistant — iteratively refines a research question, builds a source list, and co-pilots the user through structured synthesis.",
+  "version": "1.0.0",
+  "author": { "name": "CAIR" }
+}

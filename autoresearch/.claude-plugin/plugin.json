@@ -1,0 +1,6 @@
+{
+  "name": "autoresearch",
+  "description": "Automatically detects when a user question needs web research and performs it without requiring an explicit command.",
+  "version": "1.0.0",
+  "author": { "name": "CAIR" }
+}

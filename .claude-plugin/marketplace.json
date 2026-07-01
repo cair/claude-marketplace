@@ -19,6 +19,20 @@
       "description": "Deep research harness — fan-out web searches, fetch sources, adversarially verify claims, synthesize a cited report.",
       "version": "1.0.0",
       "author": { "name": "CAIR" }
+    },
+    {
+      "name": "autoresearch",
+      "source": "./autoresearch",
+      "description": "Automatically detects when a user question needs web research and performs it without requiring an explicit command.",
+      "version": "1.0.0",
+      "author": { "name": "CAIR" }
+    },
+    {
+      "name": "research-pilot",
+      "source": "./research-pilot",
+      "description": "Interactive guided research assistant — iteratively refines a research question, builds a source list, and co-pilots the user through structured synthesis.",
+      "version": "1.0.0",
+      "author": { "name": "CAIR" }
     }
   ]
 }
